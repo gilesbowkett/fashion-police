@@ -1,0 +1,20 @@
+#!/usr/bin/env ruby
+
+require_relative("lib/fashion_police")
+
+@fashion_police = FashionPolice.new
+
+everything_hunky_dory = true
+
+ARGV.each do |filename|
+  begin
+    @fashion_police.investigate(File.read(filename))
+  rescue FashionPolice::BadCode
+    everything_hunky_dory = false
+    puts filename
+    puts @fashion_police.errors
+  end
+end
+
+everything_hunky_dory ? exit(0) : exit(1)
+
