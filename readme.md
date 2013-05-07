@@ -17,3 +17,9 @@ Four spaces, not two.
 
 `foo( 'bar' )`, not `foo('bar')`.
 
+## TODO
+
+Enforce Idiomatic JS:
+
+https://github.com/rwldrn/idiomatic.js/
+
