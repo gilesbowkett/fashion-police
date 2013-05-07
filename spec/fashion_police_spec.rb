@@ -1,6 +1,7 @@
 require_relative("../lib/fashion_police")
 
 describe "FashionPolice provides a tool which" do
+
   before do
     @fashion_police = FashionPolice.new
     @bad_code = <<-BAD_CODE
@@ -58,21 +59,54 @@ describe "FashionPolice enforces a coding style which" do
   end
 
   describe "puts no spaces in function declarations" do
+
     before do
       @rule = FashionPolice::NoSpacesInFunctionDeclarations.new
     end
 
-    it "positive case" do
+    it "(positive case)" do
       @rule.test("function(){ return true; }").should be_true
     end
 
-    it "negative case" do
+    it "(negative case)" do
       @rule.test("function (argument) { return true; }").should be_false
     end
 
   end
 
-  it "puts spaces around arguments in parentheses"
+  describe "puts spaces around arguments in parentheses" do
+
+    before do
+      @rule = FashionPolice::SpacesAroundArgumentsInParens.new
+    end
+
+    it "(positive case)" do
+      @rule.test("function( arg ){ return true; }").should be_true
+    end
+
+    it "(negative case)" do
+      @rule.test("function(arg){ return true; }").should be_false
+    end
+
+  end
+
+  describe "puts spaces around arguments in angle brackets" do
+
+    before do
+      @rule = FashionPolice::SpacesAroundArgumentsInAngleBrackets.new
+    end
+
+    it "(positive case)" do
+      @rule.test("function( arg ){ return true; }").should be_true
+    end
+
+    it "(negative case)" do
+      @rule.test("function( arg ){return true;}").should be_false
+    end
+
+  end
+
+  it "puts spaces around arguments in square brackets"
 
 end
 

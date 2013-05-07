@@ -37,13 +37,39 @@ class FashionPolice
     end
   end
 
+  class SpacesAroundArgumentsInParens
+    def test(string)
+      return true if string.match(/\( .* \)/)
+      return false if string.match(/\(\S+\)/)
+
+      return true
+    end
+
+    def error_message
+      "Put spaces around arguments inside parentheses"
+    end
+  end
+
+  class SpacesAroundArgumentsInAngleBrackets
+    def test(string)
+      return true if string.match(/\{ .* \}/)
+      return false if string.match(/\{[^\}]+\}/)
+
+      return true
+    end
+
+    def error_message
+      "Put spaces around arguments inside angle brackets"
+    end
+  end
+
   class BadCode < Exception; end
 
   def initialize
     @errors = []
     @rules = [ SpacesNotTabs.new,
                FourSpaces.new,
-               NoSpacesInFunctionDeclarations.new ]
+               NoSpacesInFunctionDeclarations.new ] # FIXME: add all rule classes
   end
 
   def investigate(code)
