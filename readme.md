@@ -13,7 +13,7 @@ Spaces, not tabs.
 
 Four spaces, not two.
 
-`function(){`, not `function () {`.
+`function () {`, not `function(){`.
 
 `foo( 'bar' )`, not `foo('bar')`.
 

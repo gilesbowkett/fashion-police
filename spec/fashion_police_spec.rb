@@ -56,18 +56,18 @@ describe "FashionPolice enforces a coding style which" do
 
   end
 
-  describe "puts no spaces in function declarations" do
+  describe "puts spaces in function declarations" do
 
     before do
-      @rule = FashionPolice::NoSpacesInFunctionDeclarations.new
+      @rule = FashionPolice::SpacesInFunctionDeclarations.new
     end
 
     it "(positive case)" do
-      @rule.test("function(){ return true; }").should be_true
+      @rule.test("function () { return true; }").should be_true
     end
 
     it "(negative case)" do
-      @rule.test("function (argument) { return true; }").should be_false
+      @rule.test("function(){ return true; }").should be_false
     end
 
   end

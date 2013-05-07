@@ -25,15 +25,15 @@ class FashionPolice
     end
   end
 
-  class NoSpacesInFunctionDeclarations
+  class SpacesInFunctionDeclarations
     def test(string)
-      return true if string.match(/function\(\.*\)\{/)
-      return false if string.match(/function\s+\(.*\)\s+\{/)
+      return false if string.match(/function\(\.*\)\{/)
+      return true if string.match(/function\s+\(.*\)\s+\{/)
       return true
     end
 
     def error_message
-      "No spaces in function declarations"
+      "Put spaces in function declarations"
     end
   end
 
@@ -82,7 +82,7 @@ class FashionPolice
     @errors = []
     @rules = [ SpacesNotTabs.new,
                FourSpaces.new,
-               NoSpacesInFunctionDeclarations.new ] # FIXME: add all rule classes
+               SpacesInFunctionDeclarations.new ] # FIXME: add all rule classes
   end
 
   def investigate(code)
