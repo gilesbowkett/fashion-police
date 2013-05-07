@@ -1,24 +1,27 @@
 require_relative("../lib/fashion_police")
 
 describe "FashionPolice provides a tool which" do
-
-  it "takes a file as input"
-
-  it "detects violations of style rules" do
-    bad_code = <<-BAD_CODE
+  before do
+    @fashion_police = FashionPolice.new
+    @bad_code = <<-BAD_CODE
   function (argument) {
     console.log('wrong indentation style');
   }
     BAD_CODE
+  end
 
-    expect( lambda {FashionPolice.new.investigate(bad_code)} ).to raise_error(FashionPolice::BadCode)
+  it "takes a file as input"
+
+  it "detects violations of style rules" do
+    expect( lambda {@fashion_police.investigate(@bad_code)} ).to raise_error(FashionPolice::BadCode)
   end
 
   describe "on error" do
 
-    it "returns line number"
-
-    it "returns error message"
+    it "keeps track of line number and error message" do
+      @fashion_police.permit?(1, '				function(arg){').should be_false
+      @fashion_police.errors.should == [{1 => "Use spaces, not tabs"}]
+    end
 
   end
 

@@ -28,7 +28,8 @@ class FashionPolice
   class NoSpacesInFunctionDeclarations
     def test(string)
       return true if string.match(/function\(\.*\)\{/)
-      return false if string.match(/function\s+\(\)\s+\{/)
+      return false if string.match(/function\s+\(.*\)\s+\{/)
+      return true
     end
 
     def error_message
