@@ -63,6 +63,19 @@ class FashionPolice
     end
   end
 
+  class SpacesAroundArgumentsInSquareBrackets
+    def test(string)
+      return true if string.match(/\[ .* \]/)
+      return false if string.match(/\[[^\]]+\]/)
+
+      return true
+    end
+
+    def error_message
+      "Put spaces around arguments inside square brackets"
+    end
+  end
+
   class BadCode < Exception; end
 
   def initialize

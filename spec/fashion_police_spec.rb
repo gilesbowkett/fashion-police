@@ -11,8 +11,6 @@ describe "FashionPolice provides a tool which" do
     BAD_CODE
   end
 
-  it "takes a file as input"
-
   it "detects violations of style rules" do
     expect( lambda {@fashion_police.investigate(@bad_code)} ).to raise_error(FashionPolice::BadCode)
   end
@@ -106,7 +104,23 @@ describe "FashionPolice enforces a coding style which" do
 
   end
 
-  it "puts spaces around arguments in square brackets"
+  describe "puts spaces around arguments in square brackets" do
+
+    before do
+      @rule = FashionPolice::SpacesAroundArgumentsInSquareBrackets.new
+    end
+
+    it "(positive case)" do
+      @rule.test("function( arg ){ return [ 0 ]; }").should be_true
+    end
+
+    it "(negative case)" do
+      @rule.test("function( arg ){ return [0]; }").should be_false
+    end
+
+  end
+
+  it "puts spaces before and after colons"
 
 end
 
