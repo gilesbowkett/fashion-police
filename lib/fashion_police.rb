@@ -61,11 +61,21 @@ class FashionPolice
     end
   end
 
+  class SpacesAroundArgumentsInForLoops
+    def test(string)
+      return false if string.match(/for\(\S+\s+[^\)]+\)/)
+      return true
+    end
+
+    def error_message
+      "Put spaces around for loop arguments"
+    end
+  end
+
   class SpacesAroundArgumentsInParens
     def test(string)
       return true if string.match(/\( .* \)/)
       return false if string.match(/\(\S+\)/)
-      return false if string.match(/for\(\S+\s+[^\)]+\)/)
 
       return true
     end

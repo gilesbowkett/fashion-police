@@ -190,15 +190,13 @@ describe FashionPolice do
 
     describe "puts spaces around args to for loops which go through array elements" do
 
-      before do
-        @rule = FashionPolice::SpacesAroundArgumentsInParens.new
-      end
-
       it "(positive case)" do
+        @rule = FashionPolice::SpacesAroundArgumentsInParens.new
         @rule.test("for ( prop in object ) {").should be_true
       end
 
       it "(negative case)" do
+        @rule = FashionPolice::SpacesAroundArgumentsInForLoops.new
         @rule.test("for(prop in object){").should be_false
       end
 
@@ -206,15 +204,13 @@ describe FashionPolice do
 
     describe "puts spaces around args to iterating for loops" do
 
-      before do
-        @rule = FashionPolice::SpacesAroundArgumentsInParens.new
-      end
-
       it "(positive case)" do
+        @rule = FashionPolice::SpacesAroundArgumentsInParens.new
         @rule.test("for ( var i = 0; i < 100; i++ ) {").should be_true
       end
 
       it "(negative case)" do
+        @rule = FashionPolice::SpacesAroundArgumentsInForLoops.new
         @rule.test("for(var i=0;i<100;i++) {").should be_false
       end
 
@@ -243,7 +239,7 @@ describe FashionPolice do
     describe "puts spaces around function args" do
 
       before do
-        @rule = FashionPolice::SpacesAroundArgumentsInParens.new
+        @rule = FashionPolice::SpacesAroundArgumentsInForLoops.new
       end
 
       it "(positive case)" do
