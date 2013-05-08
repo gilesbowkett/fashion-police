@@ -113,8 +113,8 @@ class FashionPolice
 
   class SpacesAroundArgumentsInFunctionDeclarations
     def test(string)
-      return true if string.match(/function\( [^\)]+ \)/)
-      return false if string.match(/function\([^\)]+\)/)
+      return true if string.match(/function( .+)?\( [^\)]+ \)/)
+      return false if string.match(/function( .+)?\([^\)]+\)/)
       return true
     end
 

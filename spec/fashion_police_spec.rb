@@ -220,7 +220,7 @@ describe FashionPolice do
 
     end
 
-    describe "puts spaces around function args" do
+    describe "puts spaces around anonymous function args" do
 
       before do
         @rule = FashionPolice::SpacesAroundArgumentsInFunctionDeclarations.new
@@ -232,6 +232,22 @@ describe FashionPolice do
 
       it "(negative cases)" do
         @rule.test("var square = function(number){").should be_false
+      end
+
+    end
+
+    describe "puts spaces around named function args" do
+
+      before do
+        @rule = FashionPolice::SpacesAroundArgumentsInFunctionDeclarations.new
+      end
+
+      it "(positive case)" do
+        @rule.test("var factorial = function factorial( number ) {").should be_true
+      end
+
+      it "(negative cases)" do
+        @rule.test("var factorial=function factorial(number){").should be_false
       end
 
     end
