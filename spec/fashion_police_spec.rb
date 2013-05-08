@@ -239,19 +239,35 @@ describe FashionPolice do
     describe "puts spaces around function args" do
 
       before do
-        @rule = FashionPolice::SpacesAroundArgumentsInForLoops.new
+        @rule = FashionPolice::SpacesAroundArgumentsInFunctionDeclarations.new
       end
 
       it "(positive case)" do
-        @rule.test("for ( var i = 0; i < 100; i++ ) {").should be_true
+        @rule.test("var square = function( number ) {").should be_true
       end
 
       it "(negative cases)" do
-        @rule.test("for(var i=0;i<100;i++) {").should be_false
+        @rule.test("var square = function(number){").should be_false
       end
 
     end
 
+#     describe "puts spaces around equals signs" do
+# 
+#       before do
+#         @rule = FashionPolice::SpacesAroundArgumentsInForLoops.new
+#       end
+# 
+#       it "(positive case)" do
+#         @rule.test("var square = function( number ) {").should be_true
+#       end
+# 
+#       it "(negative cases)" do
+#         @rule.test("var square=function( number ){").should be_false
+#       end
+# 
+#     end
+# 
   end
 
 end

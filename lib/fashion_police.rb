@@ -111,6 +111,18 @@ class FashionPolice
     end
   end
 
+  class SpacesAroundArgumentsInFunctionDeclarations
+    def test(string)
+      return true if string.match(/function\( [^\)]+ \)/)
+      return false if string.match(/function\([^\)]+\)/)
+      return true
+    end
+
+    def error_message
+      "Put spaces around for loop arguments"
+    end
+  end
+
   class BadCode < Exception; end
 
   def initialize
