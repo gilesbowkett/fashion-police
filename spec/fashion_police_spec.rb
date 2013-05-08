@@ -242,15 +242,18 @@ describe FashionPolice do
         @rule = FashionPolice::SpacesAroundArgumentsInFunctionDeclarations.new
       end
 
-      it "(positive case)" do
+      it "(positive cases)" do
         @rule.test("var factorial = function factorial( number ) {").should be_true
+        @rule.test("function FooBar( options ) {").should be_true
       end
 
       it "(negative cases)" do
-        @rule.test("var factorial=function factorial(number){").should be_false
+        @rule.test("var factorial = function factorial(number){").should be_false
       end
 
     end
+
+# `` and `var fooBar = new FooBar({ a: "alpha" });`
 
     describe "puts spaces around equals signs" do
 
