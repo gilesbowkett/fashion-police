@@ -136,5 +136,21 @@ describe "FashionPolice enforces a coding style which" do
 
   end
 
+  describe "puts spaces around args to ifs" do
+
+    before do
+      @rule = FashionPolice::SpacesAroundArgumentsInParens.new
+    end
+
+    it "(positive case)" do
+      @rule.test("if ( condition ) {").should be_true
+    end
+
+    it "(negative case)" do
+      @rule.test("if(condition){").should be_false
+    end
+
+  end
+
 end
 
