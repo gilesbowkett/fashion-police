@@ -28,6 +28,7 @@ class FashionPolice
   class SpacesInFunctionDeclarations
     def test(string)
       return false if string.match(/function\(\.*\)\{/)
+      return false if string.match(/function\s+\(.*\)\{/)
       return true if string.match(/function\s+\(.*\)\s+\{/)
       return true
     end
@@ -50,7 +51,7 @@ class FashionPolice
     end
   end
 
-  class SpacesAroundColonsAndEqualsSigns
+  class SpacesAroundColonsAndEqualsSigns # FIXME: our "spaces around colons" thing is not actually in idiomatic.js
     def test(string)
       return true if string.match(/ [:=] /)
       return false if string.match(/\S[:=]\S/)

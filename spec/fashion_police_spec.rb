@@ -3,6 +3,7 @@ require_relative("../lib/fashion_police")
 describe FashionPolice do
   it "probably should have integration specs"
     # because these rules could work in isolation while colliding in combination
+    # base them on the examples in https://github.com/rwldrn/idiomatic.js/
 
   describe "provides a tool which" do
 
@@ -60,20 +61,25 @@ describe FashionPolice do
 
     end
 
-    describe "puts spaces in function declarations" do
+    describe "puts spaces before function definitions" do
 
       before do
         @rule = FashionPolice::SpacesInFunctionDeclarations.new
       end
 
       it "(positive case)" do
-        @rule.test("function () { return true; }").should be_true
+        @rule.test("function() { return true; }").should be_true
       end
 
       it "(negative case)" do
-        @rule.test("function(){ return true; }").should be_false
+        @rule.test("function (){ return true; }").should be_false
       end
 
+    end
+
+    it "allows some leeway for functions invoking anonymous functions" do
+      @rule = FashionPolice::SpacesInFunctionDeclarations.new
+      @rule.test("foo(function() {});").should be_true
     end
 
     describe "puts spaces around arguments in parentheses" do
@@ -122,6 +128,11 @@ describe FashionPolice do
         @rule.test("function( arg ){ return [0]; }").should be_false
       end
 
+    end
+
+    it "makes an exception for parentheses around square brackets" do
+      @rule = FashionPolice::SpacesAroundArgumentsInParens.new
+      @rule.test("foo([ 'alpha', 'beta' ]);").should be_true
     end
 
     describe "puts spaces around args to ifs" do
@@ -184,6 +195,11 @@ describe FashionPolice do
         @rule.test("var fooBar = new FooBar({a : 'alpha'});").should be_false
       end
 
+    end
+
+    it "makes an exception for function invocations with parentheses around square brackets" do
+      @rule = FashionPolice::SpacesAroundArgumentsInParens.new
+      @rule.test("foo([ 'alpha', 'beta' ]);").should be_true
     end
 
     describe "puts spaces around args to for loops which go through array elements" do
