@@ -124,22 +124,6 @@ describe FashionPolice do
 
     end
 
-    describe "puts spaces before and after colons" do
-
-      before do
-        @rule = FashionPolice::SpacesAroundColons.new
-      end
-
-      it "(positive case)" do
-        @rule.test("foo : bar").should be_true
-      end
-
-      it "(negative case)" do
-        @rule.test("foo:bar").should be_false
-      end
-
-    end
-
     describe "puts spaces around args to ifs" do
 
       before do
@@ -252,22 +236,38 @@ describe FashionPolice do
 
     end
 
-#     describe "puts spaces around equals signs" do
-# 
-#       before do
-#         @rule = FashionPolice::SpacesAroundArgumentsInForLoops.new
-#       end
-# 
-#       it "(positive case)" do
-#         @rule.test("var square = function( number ) {").should be_true
-#       end
-# 
-#       it "(negative cases)" do
-#         @rule.test("var square=function( number ){").should be_false
-#       end
-# 
-#     end
-# 
+    describe "puts spaces around equals signs" do
+
+      before do
+        @rule = FashionPolice::SpacesAroundColonsAndEqualsSigns.new
+      end
+
+      it "(positive case)" do
+        @rule.test("var square = function( number ) {").should be_true
+      end
+
+      it "(negative cases)" do
+        @rule.test("var square=function( number ){").should be_false
+      end
+
+    end
+
+    describe "puts spaces before and after colons" do
+
+      before do
+        @rule = FashionPolice::SpacesAroundColonsAndEqualsSigns.new
+      end
+
+      it "(positive case)" do
+        @rule.test("foo : bar").should be_true
+      end
+
+      it "(negative case)" do
+        @rule.test("foo:bar").should be_false
+      end
+
+    end
+
   end
 
 end

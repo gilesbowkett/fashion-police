@@ -50,10 +50,10 @@ class FashionPolice
     end
   end
 
-  class SpacesAroundColons
+  class SpacesAroundColonsAndEqualsSigns
     def test(string)
-      return true if string.match(/ : /)
-      return false if string.match(/\S:\S/)
+      return true if string.match(/ [:=] /)
+      return false if string.match(/\S[:=]\S/)
     end
 
     def error_message
