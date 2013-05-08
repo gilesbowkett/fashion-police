@@ -65,6 +65,7 @@ class FashionPolice
     def test(string)
       return true if string.match(/\( .* \)/)
       return false if string.match(/\(\S+\)/)
+      return false if string.match(/for\(\S+\s+[^\)]+\)/)
 
       return true
     end

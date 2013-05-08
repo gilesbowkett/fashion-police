@@ -2,6 +2,7 @@ require_relative("../lib/fashion_police")
 
 describe FashionPolice do
   it "probably should have integration specs"
+    # because these rules could work in isolation while colliding in combination
 
   describe "provides a tool which" do
 
@@ -183,6 +184,22 @@ describe FashionPolice do
 
       it "(negative case)" do
         @rule.test("while(condition){").should be_false
+      end
+
+    end
+
+    describe "puts spaces around args to for loops which go through array elements" do
+
+      before do
+        @rule = FashionPolice::SpacesAroundArgumentsInParens.new
+      end
+
+      it "(positive case)" do
+        @rule.test("for ( prop in object ) {").should be_true
+      end
+
+      it "(negative case)" do
+        @rule.test("for(prop in object){").should be_false
       end
 
     end
