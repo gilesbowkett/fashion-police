@@ -137,6 +137,16 @@ class FashionPolice
     end
   end
 
+  class ColumnWidth
+    def test(string)
+      string.length <= 80
+    end
+
+    def error_message
+      "Maximum text width: 80 characters"
+    end
+  end
+
   class BadCode < Exception; end
 
   def initialize

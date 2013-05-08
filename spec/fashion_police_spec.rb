@@ -338,4 +338,21 @@ describe FashionPolice do
 
   end
 
+  describe "limits column width to 80 characters" do
+
+    before do
+      @rule = FashionPolice::ColumnWidth.new
+    end
+
+    it "(positive case)" do
+      @rule.test("sdfasdfasdf").should be_true
+    end
+
+    it "(negative case)" do
+      too_big = "                                                                                  "
+      @rule.test(too_big).should be_false
+    end
+
+  end
+
 end
