@@ -172,6 +172,20 @@ describe FashionPolice do
 
     end
 
+    describe "allows hashes, un-preceded by spaces, as arguments to functions" do
+
+      it "(positive case)" do
+        @rule = FashionPolice::SpacesAroundArgumentsInParens.new
+        @rule.test("var fooBar = new FooBar({ a : 'alpha' });").should be_true
+      end
+
+      it "(negative case)" do
+        @rule = FashionPolice::SpacesAroundArgumentsInAngleBrackets.new
+        @rule.test("var fooBar = new FooBar({a : 'alpha'});").should be_false
+      end
+
+    end
+
     describe "puts spaces around args to for loops which go through array elements" do
 
       it "(positive case)" do
@@ -252,8 +266,6 @@ describe FashionPolice do
       end
 
     end
-
-# `` and `var fooBar = new FooBar({ a: "alpha" });`
 
     describe "puts spaces around equals signs" do
 
