@@ -37,6 +37,19 @@ class FashionPolice
     end
   end
 
+  class SpacesAroundElses
+    def test(string)
+      return true if string.match(/} else {/)
+      return false if string.match(/}else{/)
+      return false if string.match(/} else{/)
+      return false if string.match(/}else {/)
+    end
+
+    def error_message
+      "Put spaces around colons"
+    end
+  end
+
   class SpacesAroundColons
     def test(string)
       return true if string.match(/ : /)
