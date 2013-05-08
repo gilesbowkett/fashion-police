@@ -8,11 +8,11 @@ describe FashionPolice do
     before do
       @fashion_police = FashionPolice.new
       @bad_code = <<-BAD_CODE
-    function (argument) {
-      console.log('wrong indentation style');
-    }
-      BAD_CODE
-    end
+  function (argument) {
+    console.log('wrong indentation style');
+  }
+    BAD_CODE
+  end
 
     it "detects violations of style rules" do
       expect( lambda {@fashion_police.investigate(@bad_code)} ).to raise_error(FashionPolice::BadCode)
@@ -167,6 +167,22 @@ describe FashionPolice do
 
       it "(negative case)" do
         @rule.test("if(true){").should be_false
+      end
+
+    end
+
+    describe "puts spaces around args to whiles" do
+
+      before do
+        @rule = FashionPolice::SpacesAroundArgumentsInParens.new
+      end
+
+      it "(positive case)" do
+        @rule.test("while ( condition ) {").should be_true
+      end
+
+      it "(negative case)" do
+        @rule.test("while(condition){").should be_false
       end
 
     end
