@@ -130,6 +130,11 @@ describe FashionPolice do
 
     end
 
+    it "allows some leeway when giving a function an object without spaces" do
+      @rule = FashionPolice::SpacesBeforeAngleBrackets.new
+      @rule.test("    foo({").should be_true
+    end
+
     describe "puts spaces around arguments in square brackets" do
 
       before do
