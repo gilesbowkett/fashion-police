@@ -240,6 +240,22 @@ describe FashionPolice do
 
     end
 
+    describe "puts spaces around function args" do
+
+      before do
+        @rule = FashionPolice::SpacesAroundArgumentsInParens.new
+      end
+
+      it "(positive case)" do
+        @rule.test("for ( var i = 0; i < 100; i++ ) {").should be_true
+      end
+
+      it "(negative cases)" do
+        @rule.test("for(var i=0;i<100;i++) {").should be_false
+      end
+
+    end
+
   end
 
 end
