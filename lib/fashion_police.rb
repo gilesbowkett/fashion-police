@@ -37,6 +37,17 @@ class FashionPolice
     end
   end
 
+  class SpacesAroundColons
+    def test(string)
+      return true if string.match(/ : /)
+      return false if string.match(/\S:\S/)
+    end
+
+    def error_message
+      "Put spaces around colons"
+    end
+  end
+
   class SpacesAroundArgumentsInParens
     def test(string)
       return true if string.match(/\( .* \)/)

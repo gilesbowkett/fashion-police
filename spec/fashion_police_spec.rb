@@ -120,7 +120,21 @@ describe "FashionPolice enforces a coding style which" do
 
   end
 
-  it "puts spaces before and after colons"
+  describe "puts spaces before and after colons" do
+
+    before do
+      @rule = FashionPolice::SpacesAroundColons.new
+    end
+
+    it "(positive case)" do
+      @rule.test("foo : bar").should be_true
+    end
+
+    it "(negative case)" do
+      @rule.test("foo:bar").should be_false
+    end
+
+  end
 
 end
 
