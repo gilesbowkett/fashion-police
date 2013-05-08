@@ -114,6 +114,22 @@ describe FashionPolice do
 
     end
 
+    describe "puts spaces before angle brackets" do
+
+      before do
+        @rule = FashionPolice::SpacesBeforeAngleBrackets.new
+      end
+
+      it "(positive case)" do
+        @rule.test("function( arg ) { return true; }").should be_true
+      end
+
+      it "(negative case)" do
+        @rule.test("function( arg ){ return true; }").should be_true
+      end
+
+    end
+
     describe "puts spaces around arguments in square brackets" do
 
       before do

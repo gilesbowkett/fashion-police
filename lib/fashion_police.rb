@@ -86,6 +86,19 @@ class FashionPolice
     end
   end
 
+  class SpacesBeforeAngleBrackets
+    def test(string)
+      return true if string.match(/(\S+ )?\{/)
+      return false if string.match(/\S\{/)
+
+      return true
+    end
+
+    def error_message
+      "Put spaces in front of angle brackets"
+    end
+  end
+
   class SpacesAroundArgumentsInAngleBrackets
     def test(string)
       return true if string.match(/\{ .* \}/)
