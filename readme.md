@@ -16,11 +16,13 @@ requests welcome.
 
 ## How To Use It
 
-`ln -s pre-commit.bash .git/hooks/pre-commit`
+    rm .git/hooks/pre-commit.sample
+    ln -s pre-commit.bash .git/hooks/pre-commit
 
 Or, if you're using it in a project which is a submodule of another project:
 
-`your-main-project-name/.git/modules/your-sub-project-name/hooks/pre-commit`
+    rm your-main-project-name/.git/modules/your-sub-project-name/hooks/pre-commit.sample
+    ln -s pre-commit.bash your-main-project-name/.git/modules/your-sub-project-name/hooks/pre-commit
 
 Now it runs automatically and prevents you from commiting your changes unless
 they conform to Idiomatic.js.
