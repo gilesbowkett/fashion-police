@@ -82,6 +82,11 @@ describe FashionPolice do
       @rule.test("foo(function() {});").should be_true
     end
 
+    it "makes an exception for functions invoking single string literals" do
+      @rule = FashionPolice::SpacesAroundArgumentsInParens.new
+      @rule.test("foo('bar');").should be_true
+    end
+
     describe "puts spaces around arguments in parentheses" do
 
       before do
