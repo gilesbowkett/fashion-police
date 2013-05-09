@@ -39,15 +39,20 @@ class FashionPolice
   end
 
   class SpacesAroundElses
+    # FIXME: this many corner cases and exceptions probably exist for any spacing rule. really
+    # this thing should probably run on a PEG if we want it to be rock-solid.
     def test(string)
       return true if string.match(/} else {/)
       return false if string.match(/}else{/)
-      return false if string.match(/} else{/)
-      return false if string.match(/}else {/)
+      return false if string.match(/} +else{/)
+      return false if string.match(/}else +{/)
+      return false if string.match(/} +else ?{/)
+      return false if string.match(/} ?else +{/)
+      return true
     end
 
     def error_message
-      "Put spaces around colons"
+      "Put spaces around elses"
     end
   end
 
@@ -76,6 +81,7 @@ class FashionPolice
   class SpacesAroundArgumentsInParens
     def test(string)
       return true if string.match(/\( .* \)/)
+      return true if string.match(/\S+\(function\(/)
       return false if string.match(/\(\S+\)/)
 
       return true
@@ -152,14 +158,29 @@ class FashionPolice
   def initialize
     @errors = []
     @rules = [ SpacesNotTabs.new,
-               FourSpaces.new,
-               SpacesInFunctionDeclarations.new ] # FIXME: add all rule classes
+               # FourSpaces.new,
+               SpacesInFunctionDeclarations.new,
+               SpacesAroundElses.new,
+               # SpacesAroundColonsAndEqualsSigns.new,
+               SpacesAroundArgumentsInForLoops.new,
+               SpacesAroundArgumentsInParens.new,
+               SpacesBeforeAngleBrackets.new,
+               SpacesAroundArgumentsInAngleBrackets.new,
+               SpacesAroundArgumentsInSquareBrackets.new,
+               SpacesAroundArgumentsInFunctionDeclarations.new,
+               ColumnWidth.new ]
   end
 
   def investigate(code)
     code.split("\n").each_with_index do |line, index|
-      raise(BadCode) unless permit?(index, line)
+      next if comment?(line)
+      line_number = index + 1
+      raise(BadCode) unless permit?(line_number, line)
     end
+  end
+
+  def comment?(line)
+    line.match(/^ *\/\//)
   end
 
   def permit?(line_number, string)

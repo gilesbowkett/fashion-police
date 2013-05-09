@@ -23,7 +23,7 @@ describe FashionPolice do
     describe "on error" do
 
       it "keeps track of line number and error message" do
-        @fashion_police.permit?(1, '				function(arg){').should be_false
+        @fashion_police.permit?(1, '				function( arg ) {').should be_false
         @fashion_police.errors.should == [{1 => "Use spaces, not tabs"}]
       end
 
@@ -78,7 +78,7 @@ describe FashionPolice do
     end
 
     it "allows some leeway for functions invoking anonymous functions" do
-      @rule = FashionPolice::SpacesInFunctionDeclarations.new
+      @rule = FashionPolice::SpacesAroundArgumentsInParens.new
       @rule.test("foo(function() {});").should be_true
     end
 
