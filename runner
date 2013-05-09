@@ -1,5 +1,8 @@
 #!/usr/bin/env ruby
 
+require 'rubygems'
+require 'rainbow'
+
 require_relative("lib/fashion_police")
 
 @fashion_police = FashionPolice.new
@@ -9,15 +12,15 @@ ARGV.each do |filename|
   begin
     @fashion_police.investigate(File.read(filename))
   rescue FashionPolice::BadCode
-    errors << filename
-    errors << @fashion_police.errors
+    errors << filename.background(:red)
+    errors << @fashion_police.errors.collect {|element| element.to_s.foreground(:red) }
   end
 end
 
 if errors.empty?
   exit(0)
 else
-  puts "JavaScript style errors!"
+  puts "JavaScript style errors!".foreground(:red)
   errors.each do |error|
     puts error
   end
