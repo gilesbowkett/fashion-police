@@ -39,8 +39,6 @@ class FashionPolice
   end
 
   class SpacesAroundElses
-    # FIXME: this many corner cases and exceptions probably exist for any spacing rule. really
-    # this thing should probably run on a PEG if we want it to be rock-solid.
     def test(string)
       return true if string.match(/} else {/)
       return false if string.match(/}else{/)
@@ -56,14 +54,14 @@ class FashionPolice
     end
   end
 
-  class SpacesAroundColonsAndEqualsSigns # FIXME: our "spaces around colons" thing is not actually in idiomatic.js
+  class SpacesAroundEqualsSigns
     def test(string)
-      return true if string.match(/ [:=] /)
-      return false if string.match(/\S[:=]\S/)
+      return true if string.match(/ = /)
+      return false if string.match(/\S=[^=]/)
     end
 
     def error_message
-      "Put spaces around colons"
+      "Put spaces around equals signs"
     end
   end
 

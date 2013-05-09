@@ -1,4 +1,4 @@
-require_relative("../lib/fashion_police")
+require_relative("../lib/fashion-police")
 
 describe FashionPolice do
 
@@ -326,7 +326,7 @@ describe FashionPolice do
     describe "puts spaces around equals signs" do
 
       before do
-        @rule = FashionPolice::SpacesAroundColonsAndEqualsSigns.new
+        @rule = FashionPolice::SpacesAroundEqualsSigns.new
       end
 
       it "(positive case)" do
@@ -335,22 +335,6 @@ describe FashionPolice do
 
       it "(negative cases)" do
         @rule.test("var square=function( number ){").should be_false
-      end
-
-    end
-
-    describe "puts spaces before and after colons" do
-
-      before do
-        @rule = FashionPolice::SpacesAroundColonsAndEqualsSigns.new
-      end
-
-      it "(positive case)" do
-        @rule.test("foo : bar").should be_true
-      end
-
-      it "(negative case)" do
-        @rule.test("foo:bar").should be_false
       end
 
     end
