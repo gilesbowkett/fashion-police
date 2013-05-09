@@ -16,5 +16,9 @@ ARGV.each do |filename|
   end
 end
 
-everything_hunky_dory ? exit(0) : exit(1)
+if everything_hunky_dory
+  exit(0)
+else
+  exit(1)
+end
 
