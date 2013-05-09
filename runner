@@ -3,22 +3,24 @@
 require_relative("lib/fashion_police")
 
 @fashion_police = FashionPolice.new
-
-everything_hunky_dory = true
+errors = []
 
 ARGV.each do |filename|
   begin
     @fashion_police.investigate(File.read(filename))
   rescue FashionPolice::BadCode
-    everything_hunky_dory = false
-    puts filename
-    puts @fashion_police.errors
+    errors << filename
+    errors << @fashion_police.errors
   end
 end
 
-if everything_hunky_dory
+if errors.empty?
   exit(0)
 else
+  puts "JavaScript style errors!"
+  errors.each do |error|
+    puts error
+  end
   exit(1)
 end
 
