@@ -16,16 +16,17 @@ requests welcome.
 
 ## How To Use It
 
-    rm .git/hooks/pre-commit.sample
-    ln -s pre-commit.bash .git/hooks/pre-commit
+`gem install fashion-police` and follow installation instructions:
 
-Or, if you're using it in a project which is a submodule of another project:
+    =====================================================================
+    To enforce JS code style:
+      rm $(git rev-parse --git-dir)/hooks/pre-commit.sample
+      echo 'fashion-police' > $(git rev-parse --git-dir)/hooks/pre-commit
+      chmod 0755 $(git rev-parse --git-dir)/hooks/pre-commit
+    =====================================================================
 
-    rm your-main-project-name/.git/modules/your-sub-project-name/hooks/pre-commit.sample
-    ln -s pre-commit.bash your-main-project-name/.git/modules/your-sub-project-name/hooks/pre-commit
-
-Now it runs automatically and prevents you from commiting your changes unless
-they conform to Idiomatic.js.
+Now it should run automatically and prevent you from commiting your changes
+unless your code conforms to Idiomatic.js.
 
 If you want to bypass your pre-commit hook, use `git commit --no-verify`.
 
@@ -34,4 +35,11 @@ More info: http://git-scm.com/book/en/Customizing-Git-Git-Hooks
 ## The Style
 
 https://github.com/rwldrn/idiomatic.js/
+
+But: `FashionPolice` also requires four spaces, not two. This departs from
+Idiomatic. C'est la vie.
+
+## License
+
+MIT.
 
