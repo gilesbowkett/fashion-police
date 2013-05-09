@@ -58,6 +58,7 @@ class FashionPolice
     def test(string)
       return true if string.match(/ = /)
       return false if string.match(/\S=[^=]/)
+      return true
     end
 
     def error_message
@@ -160,7 +161,7 @@ class FashionPolice
                # FourSpaces.new,
                SpacesInFunctionDeclarations.new,
                SpacesAroundElses.new,
-               # SpacesAroundColonsAndEqualsSigns.new,
+               SpacesAroundEqualsSigns.new,
                SpacesAroundArgumentsInForLoops.new,
                SpacesAroundArgumentsInParens.new,
                SpacesBeforeAngleBrackets.new,
