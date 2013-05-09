@@ -1,9 +1,23 @@
 require_relative("../lib/fashion_police")
 
 describe FashionPolice do
-  it "probably should have integration specs"
-    # because these rules could work in isolation while colliding in combination
-    # base them on the examples in https://github.com/rwldrn/idiomatic.js/
+
+  describe "has a very simple set of integration specs which" do
+
+    before do
+      @fashion_police = FashionPolice.new
+    end
+
+    it "passes good JavaScript through silently" do
+      good = File.dirname(__FILE__) + '/fixtures/good.js'
+      expect(lambda { @fashion_police.investigate(File.read(good)) }).to_not raise_error
+    end
+
+    it "complains about bad JavaScript" do
+      bad = File.dirname(__FILE__) + '/fixtures/bad.js'
+      expect(lambda { @fashion_police.investigate(File.read(bad)) }).to raise_error
+    end
+  end
 
   describe "provides a tool which" do
 
