@@ -81,7 +81,7 @@ class FashionPolice
   class SpacesAroundArgumentsInParens
     def test(string)
       return true if string.match(/\( .* \)/)
-      return true if string.match(/\S+\(function\(/)
+      return true if string.match(/\S*\(function\(/)
       return true if string.match(/\S+\(["'].*["']\)/)
       return false if string.match(/\(\S+\)/)
 
