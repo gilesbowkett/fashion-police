@@ -158,7 +158,6 @@ class FashionPolice
   def initialize
     @errors = []
     @rules = [ SpacesNotTabs.new,
-               FourSpaces.new,
                SpacesInFunctionDeclarations.new,
                SpacesAroundElses.new,
                SpacesAroundEqualsSigns.new,
@@ -173,8 +172,15 @@ class FashionPolice
 
   def investigate(code)
     code.split("\n").each_with_index do |line, index|
-      next if comment?(line)
       line_number = index + 1
+
+      indentation = FourSpaces.new
+      unless indentation.test(line)
+        @errors << {line_number => indentation.error_message}
+        raise(BadCode)
+      end
+
+      next if comment?(line)
       raise(BadCode) unless permit?(line_number, line)
     end
   end
