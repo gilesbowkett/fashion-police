@@ -4,6 +4,8 @@ require 'rubygems'
 require 'rainbow'
 require 'fashion-police'
 
+no_color = ARGV[0] == '--no-color' ? true : false
+
 @fashion_police = FashionPolice.new
 
 everything_copasetic = true
@@ -20,10 +22,18 @@ files.each do |filename|
   rescue FashionPolice::BadCode
     # FIXME: it's fairly obvious the clunkiness of this block
     #        means I should clean up the design
-    puts filename.color("ffa452")
+    if no_color
+      puts filename
+    else
+      puts filename.color("ff7400")
+    end
     @fashion_police.errors.each do |element|
       element.each do |key, value|
-        puts key.to_s.color("fb3c13") + " " + value.color("ff0000")
+        if no_color
+          puts key.to_s + " " + value
+        else
+          puts key.to_s.color("bf3030") + " " + value.color("ff0000")
+        end
       end
     end
     @fashion_police.errors = []
@@ -34,7 +44,11 @@ end
 if everything_copasetic
   exit(0)
 else
-  puts "Commit aborted due to JavaScript style errors.".color("eefb13")
+  if no_color
+    puts "Commit aborted due to JavaScript style errors."
+  else
+    puts "Commit aborted due to JavaScript style errors.".color("ff9640")
+  end
   exit(1)
 end
 
