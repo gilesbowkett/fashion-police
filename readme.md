@@ -36,7 +36,8 @@ More info: http://git-scm.com/book/en/Customizing-Git-Git-Hooks
 
 https://github.com/rwldrn/idiomatic.js/
 
-But: `FashionPolice` also requires four spaces, not two. This departs from
+But: `FashionPolice` also requires four spaces per indentation level, while
+Idiomatic.js recommends two. So this departs from Idiomatic, making it non-idiomatic
 Idiomatic. C'est la vie.
 
 ## License

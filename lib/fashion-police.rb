@@ -158,7 +158,7 @@ class FashionPolice
   def initialize
     @errors = []
     @rules = [ SpacesNotTabs.new,
-               # FourSpaces.new,
+               FourSpaces.new,
                SpacesInFunctionDeclarations.new,
                SpacesAroundElses.new,
                SpacesAroundEqualsSigns.new,

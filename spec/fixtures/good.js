@@ -1,244 +1,244 @@
-    // 2.A.1.1
-    // Use whitespace to promote readability
+        // 2.A.1.1
+        // Use whitespace to promote readability
 
-    if ( condition ) {
-        // statements
-    }
+        if ( condition ) {
+                // statements
+        }
 
-    while ( condition ) {
-        // statements
-    }
+        while ( condition ) {
+                // statements
+        }
 
-    for ( var i = 0; i < 100; i++ ) {
-        // statements
-    }
+        for ( var i = 0; i < 100; i++ ) {
+                // statements
+        }
 
-    // Even better:
+        // Even better:
 
-    var i,
-        length = 100;
+        var i,
+                length = 100;
 
-    for ( i = 0; i < length; i++ ) {
-        // statements
-    }
+        for ( i = 0; i < length; i++ ) {
+                // statements
+        }
 
-    // Or...
+        // Or...
 
-    var i = 0,
-        length = 100;
+        var i = 0,
+                length = 100;
 
-    for ( ; i < length; i++ ) {
-        // statements
-    }
+        for ( ; i < length; i++ ) {
+                // statements
+        }
 
-    var prop;
+        var prop;
 
-    for ( prop in object ) {
-        // statements
-    }
-
-
-    if ( true ) {
-        // statements
-    } else {
-        // statements
-    }
-
-    // 2.B.1.1
-    // Variables
-    var foo = "bar",
-        num = 1,
-        undef;
-
-    // Literal notations:
-    var array = [],
-        object = {};
+        for ( prop in object ) {
+                // statements
+        }
 
 
-    // 2.B.1.2
-    // Using only one `var` per scope (function) promotes readability
-    // and keeps your declaration list free of clutter (also saves a few keystrokes)
+        if ( true ) {
+                // statements
+        } else {
+                // statements
+        }
 
-    // Bad
-    var foo = "";
-    var bar = "";
-    var qux;
+        // 2.B.1.1
+        // Variables
+        var foo = "bar",
+                num = 1,
+                undef;
 
-    // Good
-    var foo = "",
+        // Literal notations:
+        var array = [],
+                object = {};
+
+
+        // 2.B.1.2
+        // Using only one `var` per scope (function) promotes readability
+        // and keeps your declaration list free of clutter (also saves a few keystrokes)
+
+        // Bad
+        var foo = "";
+        var bar = "";
+        var qux;
+
+        // Good
+        var foo = "",
+                bar = "",
+                quux;
+
+        // or..
+        var // Comment on these
+        foo = "",
         bar = "",
         quux;
 
-    // or..
-    var // Comment on these
-    foo = "",
-    bar = "",
-    quux;
+        // 2.B.1.3
+        // var statements should always be in the beginning of their respective scope (function).
+        // Same goes for const and let from ECMAScript 6.
 
-    // 2.B.1.3
-    // var statements should always be in the beginning of their respective scope (function).
-    // Same goes for const and let from ECMAScript 6.
+        // Good
+        function foo() {
+                var bar = "",
+                    qux;
 
-    // Good
-    function foo() {
-        var bar = "",
-          qux;
-
-        // all statements after the variables declarations.
-    }
-
-    // 2.B.2.1
-    // Named Function Declaration
-    function foo( arg1, argN ) {
-
-    }
-
-    // Usage
-    foo( arg1, argN );
-
-
-    // 2.B.2.2
-    // Named Function Declaration
-    function square( number ) {
-        return number * number;
-    }
-
-    // Usage
-    square( 10 );
-
-    // Really contrived continuation passing style
-    function square( number, callback ) {
-        callback( number * number );
-    }
-
-    square( 10, function( square ) {
-        // callback statements
-    });
-
-
-    // 2.B.2.3
-    // Function Expression
-    var square = function( number ) {
-        // Return something valuable and relevant
-        return number * number;
-    };
-
-    // Function Expression with Identifier
-    // This preferred form has the added value of being
-    // able to call itself and have an identity in stack traces:
-    var factorial = function factorial( number ) {
-        if ( number < 2 ) {
-          return 1;
+                // all statements after the variables declarations.
         }
 
-        return number * factorial( number - 1 );
-    };
+        // 2.B.2.1
+        // Named Function Declaration
+        function foo( arg1, argN ) {
 
-
-    // 2.B.2.4
-    // Constructor Declaration
-    function FooBar( options ) {
-
-        this.options = options;
-    }
-
-    // Usage
-    var fooBar = new FooBar({ a: "alpha" });
-
-    fooBar.options;
-    // { a: "alpha" }
-
-    // 2.C.1.1
-    // Functions with callbacks
-    foo(function() {
-        // Note there is no extra space between the first paren
-        // of the executing function call and the word "function"
-    });
-
-    // Function accepting an array, no space
-    foo([ "alpha", "beta" ]);
-
-    // 2.C.1.2
-    // Function accepting an object, no space
-    foo({
-        a: "alpha",
-        b: "beta"
-    });
-
-    // Single argument string literal, no space
-    foo("bar");
-
-    // Inner grouping parens, no space
-    if ( !("foo" in obj) ) {
-
-    }
-
-    // 5.1.1
-    // A Practical Module
-
-    (function( global ) {
-        var Module = (function() {
-
-          var data = "secret";
-
-          return {
-            // This is some boolean property
-            bool: true,
-            // Some string value
-            string: "a string",
-            // An array property
-            array: [ 1, 2, 3, 4 ],
-            // An object property
-            object: {
-                lang: "en-Us"
-            },
-            getData: function() {
-                // get the current value of `data`
-                return data;
-            },
-            setData: function( value ) {
-                // set the value of `data` and return it
-                return ( data = value );
-            }
-          };
-        })();
-
-        // Other things might happen here
-
-        // expose our module to the global object
-        global.Module = Module;
-
-    })( this );
-
-    // 5.2.1
-    // A Practical Constructor
-
-    (function( global ) {
-
-        function Ctor( foo ) {
-
-          this.foo = foo;
-
-          return this;
         }
 
-        Ctor.prototype.getFoo = function() {
-          return this.foo;
+        // Usage
+        foo( arg1, argN );
+
+
+        // 2.B.2.2
+        // Named Function Declaration
+        function square( number ) {
+                return number * number;
+        }
+
+        // Usage
+        square( 10 );
+
+        // Really contrived continuation passing style
+        function square( number, callback ) {
+                callback( number * number );
+        }
+
+        square( 10, function( square ) {
+                // callback statements
+        });
+
+
+        // 2.B.2.3
+        // Function Expression
+        var square = function( number ) {
+                // Return something valuable and relevant
+                return number * number;
         };
 
-        Ctor.prototype.setFoo = function( val ) {
-          return ( this.foo = val );
+        // Function Expression with Identifier
+        // This preferred form has the added value of being
+        // able to call itself and have an identity in stack traces:
+        var factorial = function factorial( number ) {
+                if ( number < 2 ) {
+                    return 1;
+                }
+
+                return number * factorial( number - 1 );
         };
 
 
-        // To call constructor's without `new`, you might do this:
-        var ctor = function( foo ) {
-          return new Ctor( foo );
-        };
+        // 2.B.2.4
+        // Constructor Declaration
+        function FooBar( options ) {
+
+                this.options = options;
+        }
+
+        // Usage
+        var fooBar = new FooBar({ a: "alpha" });
+
+        fooBar.options;
+        // { a: "alpha" }
+
+        // 2.C.1.1
+        // Functions with callbacks
+        foo(function() {
+                // Note there is no extra space between the first paren
+                // of the executing function call and the word "function"
+        });
+
+        // Function accepting an array, no space
+        foo([ "alpha", "beta" ]);
+
+        // 2.C.1.2
+        // Function accepting an object, no space
+        foo({
+                a: "alpha",
+                b: "beta"
+        });
+
+        // Single argument string literal, no space
+        foo("bar");
+
+        // Inner grouping parens, no space
+        if ( !("foo" in obj) ) {
+
+        }
+
+        // 5.1.1
+        // A Practical Module
+
+        (function( global ) {
+                var Module = (function() {
+
+                    var data = "secret";
+
+                    return {
+                        // This is some boolean property
+                        bool: true,
+                        // Some string value
+                        string: "a string",
+                        // An array property
+                        array: [ 1, 2, 3, 4 ],
+                        // An object property
+                        object: {
+                                lang: "en-Us"
+                        },
+                        getData: function() {
+                                // get the current value of `data`
+                                return data;
+                        },
+                        setData: function( value ) {
+                                // set the value of `data` and return it
+                                return ( data = value );
+                        }
+                    };
+                })();
+
+                // Other things might happen here
+
+                // expose our module to the global object
+                global.Module = Module;
+
+        })( this );
+
+        // 5.2.1
+        // A Practical Constructor
+
+        (function( global ) {
+
+                function Ctor( foo ) {
+
+                    this.foo = foo;
+
+                    return this;
+                }
+
+                Ctor.prototype.getFoo = function() {
+                    return this.foo;
+                };
+
+                Ctor.prototype.setFoo = function( val ) {
+                    return ( this.foo = val );
+                };
 
 
-        // expose our constructor to the global object
-        global.ctor = ctor;
+                // To call constructor's without `new`, you might do this:
+                var ctor = function( foo ) {
+                    return new Ctor( foo );
+                };
 
-    })( this );
+
+                // expose our constructor to the global object
+                global.ctor = ctor;
+
+        })( this );
 
