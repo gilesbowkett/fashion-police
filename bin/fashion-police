@@ -13,11 +13,14 @@ staged = `git diff --name-only --cached`.split("\n")
 files = unstaged + staged
 
 files.each do |filename|
+  next unless filename.match(/\.js$/)
   begin
     @fashion_police.investigate(File.read(filename))
   rescue FashionPolice::BadCode
     errors << filename.background(:red)
-    errors << @fashion_police.errors.collect {|element| element.to_s.foreground(:red) }
+    errors << @fashion_police.errors.collect do |element|
+      element.to_s.foreground(:red)
+    end
   end
 end
 
