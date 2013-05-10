@@ -5,7 +5,8 @@ require 'rainbow'
 require 'fashion-police'
 
 @fashion_police = FashionPolice.new
-errors = []
+
+everything_copasetic = true
 
 unstaged = `git diff --name-only`.split("\n")
 staged = `git diff --name-only --cached`.split("\n")
@@ -17,20 +18,23 @@ files.each do |filename|
   begin
     @fashion_police.investigate(File.read(filename))
   rescue FashionPolice::BadCode
-    errors << filename.background(:red)
-    errors << @fashion_police.errors.collect do |element|
-      element.to_s.foreground(:red)
+    # FIXME: it's fairly obvious the clunkiness of this block
+    #        means I should clean up the design
+    puts filename.color("ffa452")
+    @fashion_police.errors.each do |element|
+      element.each do |key, value|
+        puts key.to_s.color("fb3c13") + " " + value.color("ff0000")
+      end
     end
+    @fashion_police.errors = []
+    everything_copasetic = false
   end
 end
 
-if errors.empty?
+if everything_copasetic
   exit(0)
 else
-  puts "JavaScript style errors!".foreground(:red)
-  errors.each do |error|
-    puts error
-  end
+  puts "Commit aborted due to JavaScript style errors.".color("eefb13")
   exit(1)
 end
 

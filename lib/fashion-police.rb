@@ -1,6 +1,5 @@
 class FashionPolice
-  attr_reader :errors
-  attr_accessor :rules
+  attr_accessor :errors, :rules
 
   class SpacesNotTabs
     def test(string)
