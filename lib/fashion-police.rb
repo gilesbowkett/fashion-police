@@ -68,6 +68,7 @@ class FashionPolice
   class SpacesAroundArgumentsInForLoops
     def test(string)
       return false if string.match(/for\(\S+\s+[^\)]+\)/)
+      return false if string.match(/for \(\S+\s+/)
       return true
     end
 

@@ -266,6 +266,7 @@ describe FashionPolice do
       it "(negative case)" do
         @rule = FashionPolice::SpacesAroundArgumentsInForLoops.new
         @rule.test("for(var i=0;i<100;i++) {").should be_false
+        @rule.test("for (i = 0; i < 100; i++) {").should be_false
       end
 
     end
