@@ -40,12 +40,12 @@ class FashionPolice
 
   class SpacesAroundElses
     def test(string)
-      return true if string.match(/} else {/)
-      return false if string.match(/}else{/)
-      return false if string.match(/} +else{/)
-      return false if string.match(/}else +{/)
-      return false if string.match(/} +else ?{/)
-      return false if string.match(/} ?else +{/)
+      return true if string.match(/\} else \{/)
+      return false if string.match(/\}else\{/)
+      return false if string.match(/\} +else\{/)
+      return false if string.match(/\}else +\{/)
+      return false if string.match(/\} +else ?\{/)
+      return false if string.match(/\} ?else +\{/)
       return true
     end
 

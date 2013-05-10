@@ -18,12 +18,13 @@ requests welcome.
 
 `gem install fashion-police` and follow installation instructions:
 
-    =====================================================================
+    ======================================================================
     To enforce JS code style:
       rm $(git rev-parse --git-dir)/hooks/pre-commit.sample
-      echo 'fashion-police' > $(git rev-parse --git-dir)/hooks/pre-commit
+      echo '#!/bin/bash' > $(git rev-parse --git-dir)/hooks/pre-commit
+      echo 'fashion-police' >> $(git rev-parse --git-dir)/hooks/pre-commit
       chmod 0755 $(git rev-parse --git-dir)/hooks/pre-commit
-    =====================================================================
+    ======================================================================
 
 Now it should run automatically and prevent you from commiting your changes
 unless your code conforms to Idiomatic.js.

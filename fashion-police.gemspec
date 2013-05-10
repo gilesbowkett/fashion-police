@@ -3,7 +3,7 @@ $:.push File.expand_path("../lib", __FILE__)
 
 Gem::Specification.new do |s|
   s.name = "fashion-police"
-  s.version = "0.0.1"
+  s.version = "0.0.2"
   s.authors = ["Giles Bowkett"]
   s.email = ["gilesb@gmail.com"]
   s.homepage = ""
@@ -24,12 +24,13 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency('rainbow')
 
   s.post_install_message = "
-  =====================================================================
+  ======================================================================
   To enforce JS code style:
     rm $(git rev-parse --git-dir)/hooks/pre-commit.sample
-    echo 'fashion-police' > $(git rev-parse --git-dir)/hooks/pre-commit
+    echo '#!/bin/bash' > $(git rev-parse --git-dir)/hooks/pre-commit
+    echo 'fashion-police' >> $(git rev-parse --git-dir)/hooks/pre-commit
     chmod 0755 $(git rev-parse --git-dir)/hooks/pre-commit
-  =====================================================================
+  ======================================================================
 
 "
 end
