@@ -10,10 +10,7 @@ no_color = ARGV[0] == '--no-color' ? true : false
 
 everything_copasetic = true
 
-unstaged = `git diff --name-only`.split("\n")
-staged = `git diff --name-only --cached`.split("\n")
-
-files = unstaged + staged
+files = `git diff --name-only --cached`.split("\n")
 
 files.each do |filename|
   next unless filename.match(/\.js$/)
