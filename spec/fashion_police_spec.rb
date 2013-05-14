@@ -10,12 +10,16 @@ describe FashionPolice do
 
     it "passes good JavaScript through silently" do
       good = File.dirname(__FILE__) + '/fixtures/good.js'
-      expect(lambda { @fashion_police.investigate(File.read(good)) }).to_not raise_error
+      expect(lambda do
+        @fashion_police.investigate(File.read(good))
+      end).to_not raise_error
     end
 
     it "complains about bad JavaScript" do
       bad = File.dirname(__FILE__) + '/fixtures/bad.js'
-      expect(lambda { @fashion_police.investigate(File.read(bad)) }).to raise_error
+      expect(lambda do
+        @fashion_police.investigate(File.read(bad))
+      end).to raise_error
     end
   end
 
@@ -31,7 +35,9 @@ describe FashionPolice do
   end
 
     it "detects violations of style rules" do
-      expect( lambda {@fashion_police.investigate(@bad_code)} ).to raise_error(FashionPolice::BadCode)
+      expect(lambda do
+        @fashion_police.investigate(@bad_code)
+      end).to raise_error(FashionPolice::BadCode)
     end
 
     describe "on error" do
@@ -237,7 +243,7 @@ describe FashionPolice do
 
     end
 
-    it "makes an exception for function invocations with parentheses around square brackets" do
+    it "makes a brackets/whitespace exception" do
       @rule = FashionPolice::SpacesAroundArgumentsInParens.new
       @rule.test("foo([ 'alpha', 'beta' ]);").should be_true
     end
